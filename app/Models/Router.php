@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use App\Contracts\IRequest;
 use Jenssegers\Blade\Blade;
 
 class Router
 {
-    /** @var Request $request */
+    /**
+     * The request
+     *
+     * @var IRequest
+     */
     private $request;
 
     private $supportedHttpMethods = array(
@@ -43,11 +48,21 @@ class Router
         return $result;
     }
 
+    /**
+     * Handle invalid request method
+     *
+     * @return void
+     */
     private function invalidMethodHandler()
     {
         header("{$this->request->serverProtocol} 405 Method Not Allowed");
     }
 
+    /**
+     * Handle page not found request
+     *
+     * @return void
+     */
     private function defaultRequestHandler()
     {
         header("{$this->request->serverProtocol} 404 Not Found");
@@ -66,8 +81,8 @@ class Router
     private function resolve()
     {
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
-        $formattedRoute = $this->formatRoute($this->request->requestUri);
-        $method = $methodDictionary[$formattedRoute];
+        $formattedRoute   = $this->formatRoute($this->request->requestUri);
+        $method           = $methodDictionary[$formattedRoute];
 
         if (is_null($method)) {
             $this->defaultRequestHandler();
@@ -77,7 +92,12 @@ class Router
         echo call_user_func_array($method, array($this->request));
     }
 
-    public function getLocale()
+    /**
+     * Returns locale string
+     *
+     * @return string The locale
+     */
+    public function getLocale(): string
     {
         return $this->request->getLocale();
     }

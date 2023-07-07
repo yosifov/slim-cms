@@ -2,14 +2,38 @@
 
 namespace App\Models;
 
-use App\Models\IRequest;
+use App\Contracts\IRequest;
 
 class Request implements IRequest
 {
-    private $supportedLangs = array(
-        "en"
-    );
+    /**
+     * The request method
+     *
+     * @var string
+     */
+    public $requestMethod;
 
+    /**
+     * The request Uri
+     *
+     * @var string
+     */
+    public $requestUri;
+
+    /**
+     * Array with supported languages
+     *
+     * @var array
+     */
+    private $supportedLangs = [
+        "en"
+    ];
+
+    /**
+     * The default language
+     *
+     * @var string
+     */
     private $defaultLang = 'bg';
 
     public function __construct()
@@ -17,28 +41,24 @@ class Request implements IRequest
         $this->bootstrapSelf();
     }
 
+    /**
+     * Bootstraps $_SERVER props to the model
+     *
+     * @return void
+     */
     private function bootstrapSelf()
     {
         foreach ($_SERVER as $key => $value) {
-            $this->{$this->toCamelCase($key)} = $value;
+            $this->{to_camel($key)} = $value;
         }
     }
 
-    private function toCamelCase($string)
-    {
-        $result = strtolower($string);
-
-        preg_match_all('/_[a-z]/', $result, $matches);
-
-        foreach ($matches[0] as $match) {
-            $c = str_replace('_', '', strtoupper($match));
-            $result = str_replace($match, $c, $result);
-        }
-
-        return $result;
-    }
-
-    public function getBody()
+    /**
+     * Returns sanitizes request body
+     *
+     * @return array
+     */
+    public function getBody(): array
     {
         $body = array();
 
@@ -53,7 +73,12 @@ class Request implements IRequest
         return $body;
     }
 
-    public function getLocale()
+    /**
+     * Returns locale string
+     *
+     * @return string
+     */
+    public function getLocale(): string
     {
         $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
 

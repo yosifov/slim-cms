@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Contracts;
 
 interface IRequest
 {
     public function getBody();
+
+    public function getLocale();
 }

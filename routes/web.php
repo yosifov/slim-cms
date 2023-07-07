@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ContactRequest;
 use App\Models\Router;
 use App\Models\Request;
 use App\Models\Validator;
@@ -27,14 +26,14 @@ $router->get('/contact', function ($request) use ($blade) {
 });
 
 $router->post('/contact/submit', function ($request) {
-    $errors = [];
-    $response   = [];
-    $body   = $request->getBody();
+    $errors   = [];
+    $response = [];
+    $body     = $request->getBody();
 
     $rules = [
-        'name'      => 'required',
-        'email'     => 'required|email',
-        'superhero' => 'required'
+        'name'    => 'required',
+        'email'   => 'required|email',
+        'subject' => 'required'
     ];
 
     $validator = new Validator($rules, $body);

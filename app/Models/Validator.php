@@ -2,10 +2,22 @@
 
 namespace App\Models;
 
-class Validator
+use App\Contracts\IValidator;
+
+class Validator implements IValidator
 {
+    /**
+     * The validation rules
+     *
+     * @var array
+     */
     private array $rules;
 
+    /**
+     * The form fields data
+     *
+     * @var array
+     */
     private array $body;
 
     public function __construct(array $rules, array $body)
@@ -14,7 +26,12 @@ class Validator
         $this->body = $body;
     }
 
-    public function validate()
+    /**
+     * Validate body using defined rules and return error messages if available
+     *
+     * @return array The error messages
+     */
+    public function validate(): array
     {
         $errors = [];
 
@@ -35,6 +52,12 @@ class Validator
         return $errors;
     }
 
+    /**
+     * Validate required fields
+     *
+     * @param string $field
+     * @return string|null
+     */
     private function required(string $field): ?string
     {
         $value = data_get($this->body, $field);
@@ -46,6 +69,12 @@ class Validator
         return null;
     }
 
+    /**
+     * Validate email fields
+     *
+     * @param string $field
+     * @return string|null
+     */
     private function email(string $field): ?string
     {
         $value = data_get($this->body, $field);
