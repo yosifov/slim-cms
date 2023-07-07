@@ -871,7 +871,7 @@ if (! function_exists('trans')) {
     {
         $translationPath = "resources/lang/{$locale}.php";
         $langs = file_exists($translationPath)
-            ? include_once $translationPath
+            ? include $translationPath
             : [];
 
         return data_get($langs, $key, $key);
