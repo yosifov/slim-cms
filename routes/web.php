@@ -10,21 +10,28 @@ use PHPMailer\PHPMailer\Exception;
 $router = new Router(new Request());
 $blade  = new Blade('resources/views', 'cache');
 
+/**
+ * BG Routes
+ */
+
+// Home page
 $router->get('/', function ($request) use ($blade) {
     $data = [
         'locale' => $request->getLocale(),
-        'title'  => 'Добре дошли'
+        'title'  => trans('home.title', $request->getLocale())
     ];
 
     return $blade->render('home.index', $data);
 });
 
+// Contact page
 $router->get('/contact', function ($request) use ($blade) {
     $data = ['locale' => $request->getLocale()];
 
     return $blade->render('contact.index', $data);
 });
 
+// Contact form submit
 $router->post('/contact/submit', function ($request) {
     $errors   = [];
     $response = [];
@@ -59,12 +66,24 @@ $router->post('/contact/submit', function ($request) {
     return json_encode($response);
 });
 
+
+/**
+ * EN Routes
+ */
+
+// Home page
 $router->get('/en', function ($request) use ($blade) {
     $data = [
         'locale' => $request->getLocale(),
-        'title'  => 'Welcome'
+        'title'  => trans('home.title', $request->getLocale())
     ];
 
     return $blade->render('home.index', $data);
 });
 
+// Contact page
+$router->get('/en/contact', function ($request) use ($blade) {
+    $data = ['locale' => $request->getLocale()];
+
+    return $blade->render('contact.index', $data);
+});

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-sm-6 col-sm-offset-3">
-        <h1>Processing an AJAX Form</h1>
+        <h1>{{ trans('contact.heading', $locale) }}</h1>
     
         @include('contact.form')
     </div>
@@ -13,16 +13,10 @@
     $(document).ready(function () {
 
         $("form").submit(function (event) {
-            var formData = {
-                name: $("#name").val(),
-                email: $("#email").val(),
-                superhero: $("#superheroAlias").val(),
-            };
-
             $.ajax({
                 type: "POST",
                 url: "/contact/submit",
-                data: formData,
+                data: $('form').serialize(),
                 dataType: "json",
                 encode: true,
             }).done(function (data) {
