@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $router = new Router(new Request());
-$blade  = new Blade('resources/views', 'cache');
+$blade  = new Blade(views_path(), cache_path());
 
 /**
  * Home page

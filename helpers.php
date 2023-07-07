@@ -869,7 +869,7 @@ if (! function_exists('trans')) {
      */
     function trans(string $key, string $locale): string
     {
-        $translationPath = "resources/lang/{$locale}.php";
+        $translationPath = translations_path() . $locale . ".php";
         $langs = file_exists($translationPath)
             ? include $translationPath
             : [];
@@ -899,3 +899,52 @@ if (! function_exists('to_camel')) {
         return $result;
     }
 }
+
+if (! function_exists('base_path')) {
+    /**
+     * Returns the base path of the project
+     *
+     * @return string
+     */
+    function base_path(): string
+    {
+        return dirname(__FILE__) . DIRECTORY_SEPARATOR;
+    }
+}
+
+if (! function_exists('views_path')) {
+    /**
+     * Returns the views path of the project
+     *
+     * @return string
+     */
+    function views_path(): string
+    {
+        return base_path() . "resources" . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR;
+    }
+}
+
+if (! function_exists('cache_path')) {
+    /**
+     * Returns the cache path of the project
+     *
+     * @return string
+     */
+    function cache_path(): string
+    {
+        return base_path() . "cache" . DIRECTORY_SEPARATOR;
+    }
+}
+
+if (! function_exists('translations_path')) {
+    /**
+     * Returns the translations path of the project
+     *
+     * @return string
+     */
+    function translations_path(): string
+    {
+        return base_path() . "resources" . DIRECTORY_SEPARATOR . "lang" . DIRECTORY_SEPARATOR;
+    }
+}
+
