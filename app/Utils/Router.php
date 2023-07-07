@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Utils;
 
 use App\Contracts\IRequest;
 use Jenssegers\Blade\Blade;

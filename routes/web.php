@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Router;
-use App\Models\Request;
-use App\Models\Validator;
+use App\Utils\Router;
+use App\Utils\Request;
+use App\Utils\Validator;
 use Jenssegers\Blade\Blade;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

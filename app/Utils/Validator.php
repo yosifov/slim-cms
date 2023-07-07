@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Utils;
 
 use App\Contracts\IValidator;
 
@@ -81,7 +81,7 @@ class Validator implements IValidator
 
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
             return "Invalid email format";
-          }
+        }
 
         return null;
     }
