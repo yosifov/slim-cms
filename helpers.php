@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Laravel Helpers Package
- * Extracted by Anthony Rappa
- * rappa819@gmail.com
+ * Slim CMS Helpers
  */
 
 if (! function_exists('array_accessible')) {
@@ -689,65 +687,6 @@ if (! function_exists('array_sort_recursive')) {
     }
 }
 
-if (! function_exists('array_to_css_classes')) {
-    /**
-     * Conditionally compile classes from an array into a CSS class list.
-     *
-     * @param  array  $array
-     *
-     * @return string
-     */
-    function array_to_css_classes(array $array): string
-    {
-        $classList = array_wrap($array);
-
-        $classes = [];
-
-        foreach ($classList as $class => $constraint) {
-            if (is_numeric($class)) {
-                $classes[] = $constraint;
-            } elseif ($constraint) {
-                $classes[] = $class;
-            }
-        }
-
-        return implode(' ', $classes);
-    }
-}
-
-if (! function_exists('array_where')) {
-    /**
-     * Filter the array using the given callback.
-     *
-     * @param  array  $array
-     * @param  callable  $callback
-     *
-     * @return array
-     */
-    function array_where(array $array, callable $callback): array
-    {
-        return array_filter($array, $callback, ARRAY_FILTER_USE_BOTH);
-    }
-}
-
-if (! function_exists('array_wrap')) {
-    /**
-     * If the given value is not an array and not null, wrap it in one.
-     *
-     * @param  mixed  $value
-     *
-     * @return array
-     */
-    function array_wrap($value): array
-    {
-        if (is_null($value)) {
-            return [];
-        }
-
-        return is_array($value) ? $value : [$value];
-    }
-}
-
 if (! function_exists('data_fill')) {
     /**
      * Fill in data where it's missing.
@@ -913,7 +852,7 @@ if (! function_exists('to_array')) {
      *
      * @return array
      */
-    function to_array(string $json)
+    function to_array(string $json): array
     {
         return (array)json_decode($json);
     }
@@ -928,7 +867,7 @@ if (! function_exists('trans')) {
      *
      * @return string
      */
-    function trans(string $key, string $locale)
+    function trans(string $key, string $locale): string
     {
         $translationPath = "resources/lang/{$locale}.php";
         $langs = file_exists($translationPath)
@@ -936,5 +875,27 @@ if (! function_exists('trans')) {
             : [];
 
         return data_get($langs, $key, $key);
+    }
+}
+
+if (! function_exists('to_camel')) {
+    /**
+     * Convert string to Camel Case
+     *
+     * @param string $string
+     * @return void
+     */
+    function to_camel(string $string): string
+    {
+        $result = strtolower($string);
+
+        preg_match_all('/_[a-z]/', $result, $matches);
+
+        foreach ($matches[0] as $match) {
+            $c = str_replace('_', '', strtoupper($match));
+            $result = str_replace($match, $c, $result);
+        }
+
+        return $result;
     }
 }
