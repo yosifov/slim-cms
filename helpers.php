@@ -948,3 +948,15 @@ if (! function_exists('translations_path')) {
     }
 }
 
+if (! function_exists('public_path')) {
+    /**
+     * Returns the public path of the project
+     *
+     * @return string
+     */
+    function public_path(): string
+    {
+        return base_path() . "public" . DIRECTORY_SEPARATOR;
+    }
+}
+
