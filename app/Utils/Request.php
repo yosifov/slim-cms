@@ -107,7 +107,7 @@ class Request implements IRequest
      *
      * @return string
      */
-    public function setLocale(): void
+    private function setLocale(): void
     {
         $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
 
