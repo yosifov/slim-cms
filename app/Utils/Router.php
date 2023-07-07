@@ -42,9 +42,13 @@ class Router
     private function formatRoute($route)
     {
         $result = rtrim($route, '/');
+
         if ($result === '') {
             return '/';
+        } elseif ($result[0] !== '/') {
+            return '/' . $result;
         }
+
         return $result;
     }
 
@@ -81,7 +85,7 @@ class Router
     private function resolve()
     {
         $methodDictionary = $this->{strtolower($this->request->requestMethod)};
-        $formattedRoute   = $this->formatRoute($this->request->requestUri);
+        $formattedRoute   = $this->formatRoute($this->request->getNonLocalizedUri());
         $method           = $methodDictionary[$formattedRoute];
 
         if (is_null($method)) {

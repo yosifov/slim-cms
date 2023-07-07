@@ -21,6 +21,13 @@ class Request implements IRequest
     public $requestUri;
 
     /**
+     * The current locale
+     *
+     * @var string
+     */
+    private $currentLocale;
+
+    /**
      * Array with supported languages
      *
      * @var array
@@ -39,6 +46,7 @@ class Request implements IRequest
     public function __construct()
     {
         $this->bootstrapSelf();
+        $this->setLocale();
     }
 
     /**
@@ -74,14 +82,45 @@ class Request implements IRequest
     }
 
     /**
+     * Return the request URI without lang segment if supported
+     *
+     * @return string
+     */
+    public function getNonLocalizedUri(): string
+    {
+        $uriSegments = explode('/', parse_url($this->requestUri, PHP_URL_PATH));
+
+        if (count($uriSegments) > 1) {
+            $lang = $uriSegments[1];
+            if (in_array($lang, $this->supportedLangs)) {
+                array_forget($uriSegments, '1');
+
+                return implode('/', $uriSegments);
+            }
+        }
+
+        return $this->requestUri;
+    }
+
+    /**
+     * Sets current locale string
+     *
+     * @return string
+     */
+    public function setLocale(): void
+    {
+        $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
+
+        $this->currentLocale = in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : $this->defaultLang;
+    }
+
+    /**
      * Returns locale string
      *
      * @return string
      */
     public function getLocale(): string
     {
-        $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
-
-        return in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : $this->defaultLang;
+        return $this->currentLocale;
     }
 }
