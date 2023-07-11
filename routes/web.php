@@ -1,11 +1,10 @@
 <?php
 
+use App\Services\MailService;
 use App\Utils\Router;
 use App\Utils\Request;
 use App\Utils\Validator;
 use Jenssegers\Blade\Blade;
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 $router = new Router(new Request());
 $blade  = new Blade(views_path(), cache_path());
@@ -50,7 +49,16 @@ $router->post('/contact/submit', function ($request) {
     $errors = $validator->validate();
 
     if ($request->httpXRequestedWith !== 'XMLHttpRequest') {
-        $errors['global'] = 'Request not allowed!';
+        $errors['general'] = 'Request not allowed!';
+    }
+
+    if (empty($errors)) {
+        try {
+            $mail = new MailService($body);
+            $mail->send();
+        } catch (\PHPMailer\PHPMailer\Exception $e) {
+            $errors['general'] = "Съобщението не може да бъде изпратено. Грешка: {$e->errorMessage()}";
+        }
     }
 
     $response = [
@@ -59,12 +67,6 @@ $router->post('/contact/submit', function ($request) {
         'message' => empty($errors) ? 'Success!' : 'Error!'
     ];
 
-    try {
-        $mailer = new PHPMailer();
-    } catch (Exception $e) {
-        $errors['global'] = $e->getMessage();
-    }
-    
     return json_encode($response);
 });
 

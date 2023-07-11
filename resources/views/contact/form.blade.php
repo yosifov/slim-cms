@@ -46,4 +46,5 @@
     </button>
 
     <div class="alert alert-success" style="display: none;"></div>
+    <div id="general-error" class="alert alert-danger" style="display: none;"></div>
 </form>

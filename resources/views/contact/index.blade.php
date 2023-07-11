@@ -21,8 +21,8 @@
                 encode: true,
             }).done(function (data) {
                 $("form").find('.alert-success').hide();
-                $("form").find('.form-group').removeClass('has-error')
-                         .find('.error-block').hide();
+                $("form").find('#general-error').hide();
+                $("form").find('.form-group').removeClass('has-error').find('.error-block').hide();
 
                 for (const field in data.errors) {
                     if (Object.hasOwnProperty.call(data.errors, field)) {
@@ -30,6 +30,7 @@
                         
                         $(`#${field}-group`).addClass("has-error");
                         $(`#${field}-group`).find('.error-block').show().html(error);
+                        $(`#${field}-error`).show().html(error);
                     }
                 }
 
