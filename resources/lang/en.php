@@ -30,6 +30,16 @@ return [
         ],
         'buttons' => [
             'submit' => 'Send'
+        ],
+        'errors' => [
+            'required' => 'The field is required',
+            'invalid_format' => 'Invalid field format',
+            'request_not_allowed' => 'Request not allowed',
+            'message_cannot_be_sent' => 'Message cannot be sent. Error: ',
+            'general' => 'Error! Please, try again later.'
+        ],
+        'success' => [
+            'sent' => 'Message sent successfully!'
         ]
     ]
 ];

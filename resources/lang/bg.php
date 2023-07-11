@@ -30,6 +30,16 @@ return [
         ],
         'buttons' => [
             'submit' => 'Изпрати'
+        ],
+        'errors' => [
+            'required' => 'Полето е задължително',
+            'invalid_format' => 'Полето е с невалиден формат',
+            'request_not_allowed' => 'Request not allowed',
+            'message_cannot_be_sent' => 'Съобщението не може да бъде изпратено. Грешка: ',
+            'general' => 'Възникна грешка! Моля, опитайте по-късно.'
+        ],
+        'success' => [
+            'sent' => 'Съобщението е изпратено успешно!'
         ]
     ]
 ];

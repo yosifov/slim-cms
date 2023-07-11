@@ -63,7 +63,7 @@ class Validator implements IValidator
         $value = data_get($this->body, $field);
 
         if (empty($value)) {
-            return "The {$field} field is required";
+            return trans('forms.errors.required');
         }
 
         return null;
@@ -80,7 +80,7 @@ class Validator implements IValidator
         $value = data_get($this->body, $field);
 
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            return "Invalid email format";
+            return trans('forms.errors.invalid_format');
         }
 
         return null;

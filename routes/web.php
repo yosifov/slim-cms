@@ -40,7 +40,7 @@ $router->post('/contact/submit', function ($request) {
     $errors = $validator->validate();
 
     if ($request->httpXRequestedWith !== 'XMLHttpRequest') {
-        $errors['general'] = 'Request not allowed!';
+        $errors['general'] = trans('forms.errors.request_not_allowed');
     }
 
     if (empty($errors)) {
@@ -48,14 +48,14 @@ $router->post('/contact/submit', function ($request) {
             $mail = new MailService($body);
             $mail->send();
         } catch (\PHPMailer\PHPMailer\Exception $e) {
-            $errors['general'] = "Message cannot be send. Error: {$e->errorMessage()}";
+            $errors['general'] = trans('forms.errors.message_cannot_be_sent') . $e->errorMessage();
         }
     }
 
     $response = [
         'success' => empty($errors),
         'errors'  => !empty($errors) ? $errors : null,
-        'message' => empty($errors) ? 'Message send successfully!' : 'General error! Please try again later.'
+        'message' => empty($errors) ? trans('forms.success.sent') : trans('forms.errors.general')
     ];
 
     return json_encode($response);
