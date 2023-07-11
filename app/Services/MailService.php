@@ -6,7 +6,13 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class MailService
 {
+    /**
+     * The PHP Mailer instance
+     *
+     * @var PHPMailer
+     */
     private PHPMailer $mailer;
+
     /**
      * The body parameters
      *
@@ -58,16 +64,24 @@ class MailService
     }
 
     /**
-     * Sets body of the email
+     * Sets the content of the email
      *
+     * @param bool $isHtml  Whether to use HTML or not
+     * @param bool $useBodyContent  Use the form body or provided content
+     * @param string $subject   The email subject
+     * @param string $body  The email body
      * @return void
      */
-    private function setContent(): void
-    {
-        $this->mailer->isHTML(true);
-        $this->mailer->Subject = $this->body['subject'];
-        $this->mailer->Body    = $this->body['message'];
-        $this->mailer->AltBody = strip_tags($this->body['message']);
+    public function setContent(
+        bool $isHtml = true,
+        bool $useBodyContent = true,
+        string $subject = '',
+        string $body = ''
+    ): void {
+        $this->mailer->isHTML($isHtml);
+        $this->mailer->Subject = $useBodyContent ? $this->body['subject'] : $subject;
+        $this->mailer->Body    = $useBodyContent ? $this->body['message'] : $body;
+        $this->mailer->AltBody = strip_tags($useBodyContent ? $this->body['message'] : $body);
     }
 
     /**
