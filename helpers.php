@@ -863,18 +863,17 @@ if (! function_exists('trans')) {
      * Get translation by key.
      *
      * @param  string  $key
-     * @param  string  $locale
      *
      * @return string
      */
-    function trans(string $key, string $locale): string
+    function trans(string $key): string
     {
-        $translationPath = translations_path() . $locale . ".php";
-        $langs = file_exists($translationPath)
-            ? include $translationPath
+        $filePath = translations_path() . get_locale() . ".php";
+        $translations = file_exists($filePath)
+            ? include $filePath
             : [];
 
-        return data_get($langs, $key, $key);
+        return data_get($translations, $key, $key);
     }
 }
 
@@ -960,3 +959,14 @@ if (! function_exists('public_path')) {
     }
 }
 
+if (! function_exists('get_locale')) {
+    /**
+     * Returns the public path of the project
+     *
+     * @return string
+     */
+    function get_locale(): string
+    {
+        return array_get($_COOKIE, 'lang', 'bg');
+    }
+}

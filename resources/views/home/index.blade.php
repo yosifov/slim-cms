@@ -11,9 +11,9 @@
           <div class="row">
             <div class="col-lg-6 align-self-center">
               <div class="left-content header-text">
-                <h6>{{ trans('home.subtitle', $locale) }}</h6>
+                <h6>{{ trans('home.subtitle') }}</h6>
                 <h2>Slim <em>CMS</em></h2>
-                <p>{{ trans('home.keyvisual_info', $locale) }}</p>
+                <p>{{ trans('home.keyvisual_info') }}</p>
               </div>
             </div>
             <div class="col-lg-6">
@@ -32,8 +32,8 @@
       <div class="row">
         <div class="col-lg-6 align-self-center">
           <div class="section-heading">
-            <h2>{{ trans('contact.heading', $locale) }}</h2>
-            <p>{{ trans('contact.sub_heading', $locale) }}</p>
+            <h2>{{ trans('contact.heading') }}</h2>
+            <p>{{ trans('contact.sub_heading') }}</p>
             <div class="phone-info">
             </div>
           </div>

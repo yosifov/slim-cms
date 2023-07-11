@@ -74,7 +74,6 @@ class Router
         $blade = new Blade(views_path(), cache_path());
 
         echo $blade->render('error.404', [
-            'locale' => $this->request->getLocale(),
             'lang' => ['title' => 'Page Not Found'],
         ]);
     }
@@ -94,16 +93,6 @@ class Router
         }
 
         echo call_user_func_array($method, array($this->request));
-    }
-
-    /**
-     * Returns locale string
-     *
-     * @return string The locale
-     */
-    public function getLocale(): string
-    {
-        return $this->request->getLocale();
     }
 
     public function __destruct()

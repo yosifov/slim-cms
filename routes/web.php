@@ -14,8 +14,7 @@ $blade  = new Blade(views_path(), cache_path());
  */
 $router->get('/', function ($request) use ($blade) {
     $data = [
-        'locale' => $request->getLocale(),
-        'title'  => trans('home.title', $request->getLocale())
+        'title'  => trans('home.title')
     ];
 
     return $blade->render('home.index', $data);

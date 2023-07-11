@@ -9,7 +9,7 @@
         class="form-control"
         id="name"
         name="name"
-        placeholder="{{ trans('forms.placeholders.name', $locale) }}"
+        placeholder="{{ trans('forms.placeholders.name') }}"
       />
       <div class="error-block invalid-feedback" style="display: none;"></div>
     </div>
@@ -20,7 +20,7 @@
         class="form-control"
         id="email"
         name="email"
-        placeholder="{{ trans('forms.placeholders.email', $locale) }}"
+        placeholder="{{ trans('forms.placeholders.email') }}"
       />
       <div class="error-block invalid-feedback" style="display: none;"></div>
     </div>
@@ -31,20 +31,20 @@
         class="form-control"
         id="subject"
         name="subject"
-        placeholder="{{ trans('forms.placeholders.subject', $locale) }}"
+        placeholder="{{ trans('forms.placeholders.subject') }}"
       />
       <div class="error-block invalid-feedback" style="display: none;"></div>
     </div>
 
     <div id="message-group" class="form-group">
-      <textarea class="form-control" id="message" name="message" placeholder="{{ trans('forms.placeholders.message', $locale) }}"></textarea>
+      <textarea class="form-control" id="message" name="message" placeholder="{{ trans('forms.placeholders.message') }}"></textarea>
       <div class="error-block invalid-feedback" style="display: none;"></div>
     </div>
 
     <div class="col-lg-12">
       <button type="submit" class="btn btn-success">
         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display: none;"></span>
-        <span class="sr-only">{{ trans('forms.buttons.submit', $locale) }}</span>
+        <span class="sr-only">{{ trans('forms.buttons.submit') }}</span>
       </button>
     </div>
 

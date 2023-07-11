@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ isset($locale) ? $locale : 'en' }}">
+<html lang="{{ get_locale() }}">
 	@include ("partials.head")
 	<body>
 		@include ("partials.header")

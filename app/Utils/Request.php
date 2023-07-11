@@ -36,13 +36,6 @@ class Request implements IRequest
         "en"
     ];
 
-    /**
-     * The default language
-     *
-     * @var string
-     */
-    private $defaultLang = 'bg';
-
     public function __construct()
     {
         $this->bootstrapSelf();
@@ -111,16 +104,11 @@ class Request implements IRequest
     {
         $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
 
-        $this->currentLocale = in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : $this->defaultLang;
-    }
+        $this->currentLocale = in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : array_get($_ENV, 'DEFAULT_LOCALE', 'bg');
 
-    /**
-     * Returns locale string
-     *
-     * @return string
-     */
-    public function getLocale(): string
-    {
-        return $this->currentLocale;
+        if (!isset($_COOKIE['lang']) || $_COOKIE['lang'] !== $this->currentLocale) {
+            setcookie('lang', $this->currentLocale);
+            header('Location: ' . $this->requestUri);
+        }
     }
 }
