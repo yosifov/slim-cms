@@ -22,15 +22,6 @@ $router->get('/', function ($request) use ($blade) {
 });
 
 /**
- * Contact page
- */
-$router->get('/contact', function ($request) use ($blade) {
-    $data = ['locale' => $request->getLocale()];
-
-    return $blade->render('contact.index', $data);
-});
-
-/**
  * Contact form submit
  */
 $router->post('/contact/submit', function ($request) {
@@ -41,7 +32,8 @@ $router->post('/contact/submit', function ($request) {
     $rules = [
         'name'    => 'required',
         'email'   => 'required|email',
-        'subject' => 'required'
+        'subject' => 'required',
+        'message' => 'required',
     ];
 
     $validator = new Validator($rules, $body);
@@ -57,16 +49,15 @@ $router->post('/contact/submit', function ($request) {
             $mail = new MailService($body);
             $mail->send();
         } catch (\PHPMailer\PHPMailer\Exception $e) {
-            $errors['general'] = "Съобщението не може да бъде изпратено. Грешка: {$e->errorMessage()}";
+            $errors['general'] = "Message cannot be send. Error: {$e->errorMessage()}";
         }
     }
 
     $response = [
         'success' => empty($errors),
         'errors'  => !empty($errors) ? $errors : null,
-        'message' => empty($errors) ? 'Success!' : 'Error!'
+        'message' => empty($errors) ? 'Message send successfully!' : 'General error! Please try again later.'
     ];
 
     return json_encode($response);
 });
-

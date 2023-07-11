@@ -71,7 +71,7 @@ class Router
     {
         header("{$this->request->serverProtocol} 404 Not Found");
 
-        $blade = new Blade('resources/views', 'cache');
+        $blade = new Blade(views_path(), cache_path());
 
         echo $blade->render('error.404', [
             'locale' => $this->request->getLocale(),

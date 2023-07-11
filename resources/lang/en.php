@@ -2,11 +2,18 @@
 
 return [
     'home' => [
-        'title' => 'Welcome',
-        'heading' => 'Home page'
+        'title' => 'Slim CMS - Simple PHP Framework',
+        'subtitle' => 'Simple PHP Framework',
+        'keyvisual_info' => 'PHP based framework for simple websites without the need to use database. It uses blade template engine.'
+    ],
+    'header' => [
+        'contact_us' => 'Contact us',
+        'download' => 'Download',
+        'menu' => 'Menu'
     ],
     'contact' => [
-        'heading' => 'Contact us'
+        'heading' => 'Feel free to send us a message',
+        'sub_heading' => 'It\'s an example contact form so don\'t try too hard :)'
     ],
     'forms' => [
         'labels' => [
@@ -17,12 +24,12 @@ return [
         ],
         'placeholders' => [
             'name' => 'Full name',
-            'email' => 'email@example.com',
-            'subject' => 'How can we help?',
-            'message' => 'Send us a message'
+            'email' => 'E-mail',
+            'subject' => 'Subject',
+            'message' => 'Message'
         ],
         'buttons' => [
-            'submit' => 'Submit'
+            'submit' => 'Send'
         ]
     ]
 ];
