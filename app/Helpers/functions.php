@@ -959,6 +959,18 @@ if (! function_exists('public_path')) {
     }
 }
 
+if (! function_exists('database_path')) {
+    /**
+     * Returns the database path of the project
+     *
+     * @return string
+     */
+    function database_path(): string
+    {
+        return base_path() . "resources" . DIRECTORY_SEPARATOR . "database" . DIRECTORY_SEPARATOR;
+    }
+}
+
 if (! function_exists('get_locale')) {
     /**
      * Returns the public path of the project
@@ -968,5 +980,21 @@ if (! function_exists('get_locale')) {
     function get_locale(): string
     {
         return array_get($_COOKIE, 'lang', 'bg');
+    }
+}
+
+if (!function_exists('dd')) {
+    /**
+     * Simple dump and die function
+     *
+     * @return string
+     */
+    function dd(): string
+    {
+        echo '<pre>';
+        array_map(function ($x) {
+            var_dump($x);
+        }, func_get_args());
+        die;
     }
 }

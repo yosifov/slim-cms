@@ -1,10 +1,10 @@
 <?php
 
-use App\Services\MailService;
 use App\Utils\Router;
 use App\Utils\Request;
 use App\Utils\Validator;
 use Jenssegers\Blade\Blade;
+use App\Services\MailService;
 
 $router = new Router(new Request());
 $blade  = new Blade(views_path(), cache_path());
