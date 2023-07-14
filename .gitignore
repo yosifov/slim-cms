@@ -1,5 +1,4 @@
 /vendor
 /cache
-/resources/database
 composer.phar
 .env
