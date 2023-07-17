@@ -1,4 +1,4 @@
-<form id="contact" action="/contact/submit" method="POST">
+<form id="contact" action="{{ route('/contact/submit') }}" method="POST">
   <div class="alert alert-success" style="display: none;"></div>
   <div id="general-error" class="alert alert-danger" style="display: none;"></div>
 
@@ -60,21 +60,23 @@
 <script>
     $(document).ready(function () {
 
-        $("form").submit(function (event) {
+        $("form#contact").submit(function (event) {
+            let $this = $(this);
+
             $.ajax({
                 type: "POST",
-                url: "/contact/submit",
-                data: $('form').serialize(),
+                url: $this.prop("action"),
+                data: $this.serialize(),
                 dataType: "json",
                 encode: true,
                 beforeSend: function() {
-                  $("form").find("button[type=submit]").prop('disabled', true).find(".spinner-border").show();
+                  $this.find("button[type=submit]").prop('disabled', true).find(".spinner-border").show();
                 }
             }).done(function (data) {
-                $("form").find('.alert-success').hide();
-                $("form").find('#general-error').hide();
-                $("form").find('.form-group').removeClass('has-error').find('.error-block').hide();
-                $("form").find("button[type=submit]").prop('disabled', false).find(".spinner-border").hide();
+                $this.find('.alert-success').hide();
+                $this.find('#general-error').hide();
+                $this.find('.form-group').removeClass('has-error').find('.error-block').hide();
+                $this.find("button[type=submit]").prop('disabled', false).find(".spinner-border").hide();
 
                 for (const field in data.errors) {
                     if (Object.hasOwnProperty.call(data.errors, field)) {
@@ -87,7 +89,7 @@
                 }
 
                 if (data.success) {
-                    $("form").trigger("reset").find('.alert-success').show().html(data.message);
+                    $this.trigger("reset").find('.alert-success').show().html(data.message);
                 }
             });
 

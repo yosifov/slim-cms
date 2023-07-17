@@ -983,6 +983,26 @@ if (! function_exists('get_locale')) {
     }
 }
 
+if (! function_exists('route')) {
+    /**
+     * Returns the route for the current locale
+     *
+     * @param string $route
+     * @return string
+     */
+    function route(string $route): string
+    {
+        $urlSegments   = explode("/", parse_url($route, PHP_URL_PATH));
+        $currentLocale = get_locale();
+
+        if (count($urlSegments) > 1 && $urlSegments[1] !== $currentLocale && $currentLocale !== 'bg') {
+            array_splice($urlSegments, 1, 0, (array) $currentLocale);
+        }
+
+        return implode('/', $urlSegments);
+    }
+}
+
 if (!function_exists('dd')) {
     /**
      * Simple dump and die function
