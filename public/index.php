@@ -6,3 +6,4 @@ require_once '../routes/web.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(base_path());
 $dotenv->safeLoad();
+$dotenv->required(['APP_NAME']);

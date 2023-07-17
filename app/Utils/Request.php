@@ -104,7 +104,7 @@ class Request implements IRequest
     {
         $urlSegments = explode("/", parse_url($this->requestUri, PHP_URL_PATH));
 
-        $this->currentLocale = in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : array_get($_ENV, 'DEFAULT_LOCALE', 'bg');
+        $this->currentLocale = in_array($urlSegments[1], $this->supportedLangs) ? $urlSegments[1] : config('default_locale');
 
         if (!isset($_COOKIE['lang']) || $_COOKIE['lang'] !== $this->currentLocale) {
             setcookie('lang', $this->currentLocale, 0, "/");

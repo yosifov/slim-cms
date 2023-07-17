@@ -5,7 +5,7 @@
             <div class="col-12">
                 <nav class="main-nav">
 
-                    <a href="/@if (get_locale() !== 'bg'){{ get_locale() }}@endif" class="logo">
+                    <a href="/@if (get_locale() !== config('default_locale')){{ get_locale() }}@endif" class="logo">
                     <h4>Slim<span>CMS</span></h4>
                     </a>
 

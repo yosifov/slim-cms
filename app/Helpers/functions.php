@@ -877,6 +877,25 @@ if (! function_exists('trans')) {
     }
 }
 
+if (! function_exists('config')) {
+    /**
+     * Gets config variable or default
+     *
+     * @param string $key
+     * @param string|null $default
+     * @return string
+     */
+    function config(string $key, string $default = null): ?string
+    {
+        $filePath = base_path() . "config" . DIRECTORY_SEPARATOR . "app.php";
+        $config = file_exists($filePath)
+            ? include $filePath
+            : [];
+
+        return data_get($config, $key, $default);
+    }
+}
+
 if (! function_exists('to_camel')) {
     /**
      * Convert string to Camel Case
@@ -979,7 +998,7 @@ if (! function_exists('get_locale')) {
      */
     function get_locale(): string
     {
-        return array_get($_COOKIE, 'lang', 'bg');
+        return array_get($_COOKIE, 'lang', config('default_locale'));
     }
 }
 
@@ -995,7 +1014,7 @@ if (! function_exists('route')) {
         $urlSegments   = explode("/", parse_url($route, PHP_URL_PATH));
         $currentLocale = get_locale();
 
-        if (count($urlSegments) > 1 && $urlSegments[1] !== $currentLocale && $currentLocale !== 'bg') {
+        if (count($urlSegments) > 1 && $urlSegments[1] !== $currentLocale && $currentLocale !== config('default_locale')) {
             array_splice($urlSegments, 1, 0, (array) $currentLocale);
         }
 
