@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ isset($title) ? $title : 'Page title' }}</title>
 
+    <link rel="icon" href="/images/slimcms-logo.png" type="image/png">
+
     <meta name="description" content="">
     <meta name="author" content="Kamen Yosifov">
 

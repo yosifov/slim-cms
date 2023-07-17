@@ -6,7 +6,8 @@
                 <nav class="main-nav">
 
                     <a href="/@if (get_locale() !== config('default_locale')){{ get_locale() }}@endif" class="logo">
-                    <h4>Slim<span>CMS</span></h4>
+                        <img src="/images/slimcms-logo.png" alt="Slim CMS logo">
+                        <h4>Slim<span>CMS</span></h4>
                     </a>
 
                     <ul class="nav">

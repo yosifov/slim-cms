@@ -263,6 +263,8 @@ header
   text-transform: uppercase;
   letter-spacing: 2px;
   float: left;
+  display: flex;
+  align-items: center;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -288,6 +290,12 @@ header
 
 .background-header .main-nav .logo h4 {
   line-height: 80px;
+}
+
+.header-area .main-nav .logo img {
+  max-height: 32px;
+  width: auto;
+  margin-right: 5px;
 }
 
 .background-header .main-nav .nav {
