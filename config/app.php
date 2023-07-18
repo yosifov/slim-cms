@@ -11,7 +11,7 @@ return [
     | any other location as required by the application or its packages.
     |
     */
-    'name' => $_ENV['APP_NAME'],
+    'name' => $_ENV['APP_NAME'] ?? '',
 
     /*
     |--------------------------------------------------------------------------

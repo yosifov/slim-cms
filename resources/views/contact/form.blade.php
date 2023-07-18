@@ -1,4 +1,7 @@
 <form id="contact" action="{{ route('/contact/submit') }}" method="POST">
+
+  {!! $csrf !!}
+
   <div class="alert alert-success" style="display: none;"></div>
   <div id="general-error" class="alert alert-danger" style="display: none;"></div>
 

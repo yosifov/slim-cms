@@ -15,7 +15,7 @@ class HomeController extends Controller
      * @param IRequest $request
      * @return string
      */
-    public function index(IRequest $request): string
+    public function index(): string
     {
         $data = [
             'title'  => trans('home.title')
@@ -30,7 +30,7 @@ class HomeController extends Controller
      * @param IRequest $request
      * @return void
      */
-    public function contact(IRequest $request)
+    public function contact()
     {
         $rules = [
             'name'    => 'required',
@@ -39,6 +39,6 @@ class HomeController extends Controller
             'message' => 'required',
         ];
 
-        return $this->sendMessage($request, $rules, true);
+        return $this->sendMessage($this->request, $rules, true);
     }
 }

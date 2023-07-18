@@ -10,12 +10,12 @@ $router = new Router(new Request());
  * Home page
  */
 $router->get('/', function ($request) {
-    return (new HomeController())->index($request);
+    return (new HomeController($request))->index();
 });
 
 /**
  * Contact form submit
  */
 $router->post('/contact/submit', function ($request) {
-    return (new HomeController())->contact($request);
+    return (new HomeController($request))->contact();
 });

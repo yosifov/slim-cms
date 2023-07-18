@@ -15,7 +15,13 @@ trait SendMessage
         $body     = $request->getBody();
         $errors   = (new Validator($rules, $body))->validate();
 
-        if ($isAjax && $request->httpXRequestedWith !== 'XMLHttpRequest') {
+        /**
+         * Check for invalid request: CSRF and Ajax
+         */
+        if (
+            isset($this->csrf) && !$this->csrf->isValidRequest() ||
+            $isAjax && $request->httpXRequestedWith !== 'XMLHttpRequest'
+        ) {
             $errors['general'] = trans('forms.errors.request_not_allowed');
         }
 

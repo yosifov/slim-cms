@@ -40,6 +40,7 @@ class Request implements IRequest
     {
         $this->bootstrapSelf();
         $this->setLocale();
+        $this->startSession();
     }
 
     /**
@@ -109,6 +110,19 @@ class Request implements IRequest
         if (!isset($_COOKIE['lang']) || $_COOKIE['lang'] !== $this->currentLocale) {
             setcookie('lang', $this->currentLocale, 0, "/");
             header('Location: ' . $this->requestUri);
+        }
+    }
+
+    /**
+     * Starts the session
+     *
+     * @return void
+     * @throws RuntimeException
+     */
+    private function startSession(): void
+    {
+        if (!session_start()) {
+            throw new \RuntimeException('Failed to start the session.');
         }
     }
 }
