@@ -54,7 +54,7 @@
   </div>
 
   <div class="contact-dec">
-    <img src="/images/contact-decoration.png" alt="">
+    <img src="/images/contact-decoration.png" alt="contact form" loading="lazy">
   </div>
     
 </form>

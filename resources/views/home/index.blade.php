@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-6">
               <div class="right-image">
-                <img src="/images/banner-right-image.png" alt="Build your website with Slim CMS">
+                <img src="/images/banner-right-image.png" alt="Build your website with Slim CMS" width="570" height="399">
               </div>
             </div>
           </div>
