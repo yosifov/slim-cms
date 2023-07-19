@@ -2,9 +2,12 @@
 
 return [
     'home' => [
-        'title' => 'Slim CMS - Simple PHP Framework',
         'subtitle' => 'Simple PHP Framework',
-        'keyvisual_info' => 'PHP базиран framework подходящ за базови маркетингови проекти, за които не е необходимо използването на бази от данни. Използва се blade template engine.'
+        'keyvisual_info' => 'PHP базиран framework подходящ за базови маркетингови проекти, за които не е необходимо използването на бази от данни. Използва се blade template engine.',
+        'meta' => [
+            'description' => 'PHP базиран framework подходящ за базови маркетингови проекти, за които не е необходимо използването на бази от данни. Използва се blade template engine.',
+            'title' => 'Slim CMS - Simple PHP Framework',
+        ]
     ],
     'header' => [
         'contact_us' => 'Контакти',

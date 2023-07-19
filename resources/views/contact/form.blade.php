@@ -61,8 +61,7 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function () {
-
+    window.onload = function () {
         $("form#contact").submit(function (event) {
             let $this = $(this);
 
@@ -98,6 +97,6 @@
 
             event.preventDefault();
         });
-    });
+    };
 </script>
 @endpush

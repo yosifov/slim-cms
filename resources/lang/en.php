@@ -2,9 +2,12 @@
 
 return [
     'home' => [
-        'title' => 'Slim CMS - Simple PHP Framework',
         'subtitle' => 'Simple PHP Framework',
-        'keyvisual_info' => 'PHP based framework for simple websites without the need to use database. It uses blade template engine.'
+        'keyvisual_info' => 'PHP based framework for simple websites without the need to use database. It uses blade template engine.',
+        'meta' => [
+            'description' => 'PHP based framework for simple websites without the need to use database. It uses blade template engine.',
+            'title' => 'Slim CMS - Simple PHP Framework',
+        ]
     ],
     'header' => [
         'contact_us' => 'Contact us',

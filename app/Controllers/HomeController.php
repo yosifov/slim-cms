@@ -18,9 +18,13 @@ class HomeController extends Controller
     public function index(): string
     {
         $data = [
-            'title'  => trans('home.title')
+            'title' => trans('home.title'),
+            'meta'  => [
+                'title' => trans('home.meta.title'),
+                'description' => trans('home.meta.description'),
+            ]
         ];
-    
+
         return $this->view('home.index', $data);
     }
 
