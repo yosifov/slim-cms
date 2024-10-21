@@ -12,9 +12,16 @@ $router = new Router(new Request());
  * Home page
  */
 $router->get('/', function ($request) {
+    return (new HomeController($request))->index();
+});
+
+/**
+ * Contact form submit
+ */
+$router->post('/contact/submit', function ($request) {
     $limitKey = $request->remoteAddr . $request->requestMethod . $request->requestUri;
 
-    if (!(new RateLimiter(3, 3))->check($limitKey)) {
+    if (!(new RateLimiter(3, 10))->check($limitKey)) {
         // Send a 429 Too Many Requests response
         http_response_code(429);
 
@@ -29,12 +36,5 @@ $router->get('/', function ($request) {
         exit;
     }
 
-    return (new HomeController($request))->index();
-});
-
-/**
- * Contact form submit
- */
-$router->post('/contact/submit', function ($request) {
     return (new HomeController($request))->contact();
 });
