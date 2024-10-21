@@ -44,5 +44,10 @@ return [
         'success' => [
             'sent' => 'Съобщението е изпратено успешно!'
         ]
+    ],
+    'errors' => [
+        '429' => [
+            'title' => '429 Too Many Requests'
+        ]
     ]
 ];

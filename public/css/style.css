@@ -746,6 +746,10 @@ Banner Style
   height: 290px;
 }
 
+.main-banner--simple::before, .main-banner--simple::after {
+  display: none;
+}
+
 .main-banner .left-content {
   margin-right: 45px;
 }
